@@ -1,10 +1,11 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
+import sys
 
 def say_it():
     greeting = 'Hello'
     target = 'Joe'
-    message = greeting + target
-    print(message)
+    message = f'{greeting} {target}'
+    print(f'{message} {sys.argv[0]} {sys.argv[1]}')
 
 
 if __name__ == '__main__':
