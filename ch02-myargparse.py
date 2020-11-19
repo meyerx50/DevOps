@@ -12,4 +12,4 @@ if __name__ == '__main__':
     if args.twice:
         print(args.message)
 
-#chmod +x myargparse.py
+#chmod +x filename.py
