@@ -30,14 +30,14 @@ class Human:
             # print(f'{self.name} is now dead')
             return False
 
-games = 10000
+games = 100000
 amazon_wins = 0
 knight_wins = 0
 
 for x in range(games):
     Knight = Human()
     Knight.name = "Bolsonaro"
-    Knight.life_points = 100
+    Knight.life_points = 101
     Knight.sword_skills = 15
     Knight.shield_skills = 5
 
@@ -56,4 +56,6 @@ for x in range(games):
     else:
         knight_wins +=1
 
-print(f'{Amazon.name} won {amazon_wins} times, while {Knight.name} won {knight_wins} times')
+print(f'{Amazon.name} won {round(amazon_wins * 100 / games, 2)} % of the '
+      f'times, while {Knight.name} won {round(knight_wins * 100 / games, 2)} '
+      f'% of the times')
