@@ -21,27 +21,39 @@ class Human:
         result = attack - self.defense()
         if (result > 0):
             self.life_points -= result
-        print(f'{self.name} has now {self.life_points}.')
+        # print(f'{self.name} has now {self.life_points}.')
 
     def alive(self):
         if self.life_points > 0:
             return True
         else:
-            print(f'{self.name} is now dead')
+            # print(f'{self.name} is now dead')
             return False
 
-Knight = Human()
-Knight.name = "Bolsonaro"
-Knight.life_points = 100
-Knight.sword_skills = 15
-Knight.shield_skills = 5
+games = 10000
+amazon_wins = 0
+knight_wins = 0
 
-Amazon = Human()
-Amazon.name = "Dilma"
-Amazon.life_points = 50
-Amazon.sword_skills = 10
-Amazon.shield_skills = 25
+for x in range(games):
+    Knight = Human()
+    Knight.name = "Bolsonaro"
+    Knight.life_points = 100
+    Knight.sword_skills = 15
+    Knight.shield_skills = 5
 
-while Amazon.alive() and Knight.alive():
-    Knight.damage(Amazon.attack())
-    Amazon.damage(Knight.attack())
+    Amazon = Human()
+    Amazon.name = "Dilma"
+    Amazon.life_points = 50
+    Amazon.sword_skills = 10
+    Amazon.shield_skills = 26
+
+    while Amazon.alive() and Knight.alive():
+        Knight.damage(Amazon.attack())
+        Amazon.damage(Knight.attack())
+
+    if Amazon.alive():
+        amazon_wins += 1
+    else:
+        knight_wins +=1
+
+print(f'{Amazon.name} won {amazon_wins} times, while {Knight.name} won {knight_wins} times')
