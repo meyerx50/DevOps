@@ -1,5 +1,6 @@
 import random
 
+# Names the weapon types available in the game
 weapon_type = ['Fist', 'Axe', 'Sword', 'Shield', 'Wand']
 
 class Weapon:
@@ -7,7 +8,9 @@ class Weapon:
     def __init__(self):
         self.data = []
         self.name = "Undefined"
+        # Maximum damage delivered by the weapon by player skill 1.0
         self.attack = 0
+        # Maximum protection delivered by the weapon by player skill 1.0
         self.defense = 0
         self.type = weapon_type[0]
 
@@ -20,14 +23,17 @@ class Human:
         self.name = "Undefined"
         self.left_hand = ""
         self.right_hand = ""
+        # How good the player can handle weapons. Increases attack and defense
         self.weapon_skills = 0
 
     def attack(self):
+        # Sum all weapons attack points and multiply by the skill factor
         total_attack = round((self.right_hand.attack + self.left_hand.attack) * self.weapon_skills)
         damage = random.randint(1, total_attack)
         return damage
 
     def defense(self):
+        # Sum all weapons defense points and multiply by the skill factor
         total_defense = round((self.right_hand.defense + self.left_hand.defense) * self.weapon_skills)
         block = random.randint(1, total_defense)
         return block
