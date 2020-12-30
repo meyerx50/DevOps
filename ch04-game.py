@@ -1,8 +1,9 @@
 import random
-
+### Global Variables ###
 # Names the weapon types available in the game
 weapon_type = ['Fist', 'Axe', 'Sword', 'Shield', 'Wand']
 
+### Classes ###
 class Weapon:
 
     def __init__(self):
@@ -84,6 +85,10 @@ class Human:
         else:
             return False
 
+### Game ###
+# Creating game objects
+
+# Creating weapons
 fst_bare = Weapon()
 fst_bare.name = "Bare Fist"
 fst_bare.type = weapon_type[0]
@@ -108,6 +113,7 @@ shd_demon.type = weapon_type[2]
 shd_demon.damage = 1
 shd_demon.protection = 20
 
+# Creating Players
 Knight = Human()
 Knight.name = "Johnny Lawrence"
 Knight.life_points_max = 100
@@ -129,7 +135,7 @@ Hunter.weapon_skills = 24.2
 Hunter.mana_for_cure = 10
 Hunter.life_per_cure = 0.2
 
-
+# Fight!
 while Hunter.alive() and Knight.alive():
 
     Knight.engage(Hunter)
