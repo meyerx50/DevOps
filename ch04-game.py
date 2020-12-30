@@ -8,10 +8,10 @@ class Weapon:
     def __init__(self):
         self.data = []
         self.name = "Undefined"
-        # Maximum damage delivered by the weapon by player skill 1.0
-        self.attack = 0
-        # Maximum protection delivered by the weapon by player skill 1.0
-        self.defense = 0
+        # Maximum damage delivered by the weapon considering the player skill 1.0
+        self.damage = 0
+        # Maximum protection delivered by the weapon considering the player skill 1.0
+        self.protection = 0
         self.type = weapon_type[0]
 
 
@@ -38,14 +38,14 @@ class Human:
     # Calculates a random damage value a player can delivered based on weapons and skills
     def attack(self):
         # Sum all weapons attack points and multiply by the skill factor
-        total_attack = round((self.right_hand.attack + self.left_hand.attack) * self.weapon_skills)
+        total_attack = round((self.right_hand.damage + self.left_hand.damage) * self.weapon_skills)
         damage = random.randint(1, total_attack)
         return damage
 
     # Calculates a random block value a player can reduce from an attack based on weapons and skills
     def defense(self):
         # Sum all weapons defense points and multiply by the skill factor
-        total_defense = round((self.right_hand.defense + self.left_hand.defense) * self.weapon_skills)
+        total_defense = round((self.right_hand.protection + self.left_hand.protection) * self.weapon_skills)
         block = random.randint(1, total_defense)
         return block
 
@@ -87,26 +87,26 @@ class Human:
 fst_bare = Weapon()
 fst_bare.name = "Bare Fist"
 fst_bare.type = weapon_type[0]
-fst_bare.attack = 2
-fst_bare.defense = 1
+fst_bare.damage = 2
+fst_bare.protection = 1
 
 swd_justice = Weapon()
 swd_justice.name = "Great Sword of Justice"
 swd_justice.type = weapon_type[2]
-swd_justice.attack = 18
-swd_justice.defense = 2
+swd_justice.damage = 18
+swd_justice.protection = 2
 
 shd_guardian = Weapon()
 shd_guardian.name = "Guardian Shield"
 shd_guardian.type = weapon_type[2]
-shd_guardian.attack = 1
-shd_guardian.defense = 15
+shd_guardian.damage = 1
+shd_guardian.protection = 15
 
 shd_demon = Weapon()
 shd_demon.name = "Demon Shield"
 shd_demon.type = weapon_type[2]
-shd_demon.attack = 1
-shd_demon.defense = 20
+shd_demon.damage = 1
+shd_demon.protection = 20
 
 Knight = Human()
 Knight.name = "Johnny Lawrence"
