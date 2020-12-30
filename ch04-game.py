@@ -54,7 +54,7 @@ fst_bare.defense = 1
 swd_justice = Weapon()
 swd_justice.name = "Great Sword of Justice"
 swd_justice.type = weapon_type[2]
-swd_justice.attack = 10
+swd_justice.attack = 18
 swd_justice.defense = 2
 
 shd_guardian = Weapon()
@@ -62,6 +62,12 @@ shd_guardian.name = "Guardian Shield"
 shd_guardian.type = weapon_type[2]
 shd_guardian.attack = 1
 shd_guardian.defense = 15
+
+shd_demon = Weapon()
+shd_demon.name = "Demon Shield"
+shd_demon.type = weapon_type[2]
+shd_demon.attack = 1
+shd_demon.defense = 20
 
 Knight = Human()
 Knight.name = "Johnny Lawrence"
@@ -73,7 +79,7 @@ Hunter = Human()
 Hunter.name = "Daniel Larusso"
 Hunter.life_points = 50
 Hunter.right_hand = fst_bare
-Hunter.left_hand = fst_bare
+Hunter.left_hand = shd_demon
 
 
 while Hunter.alive() and Knight.alive():
