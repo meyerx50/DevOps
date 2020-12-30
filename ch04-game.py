@@ -27,9 +27,9 @@ class Human:
         self.left_hand = ""
         self.right_hand = ""
         # How good the player can handle weapons. Increases attack and defense
-        self.weapon_skills = 0
+        self.weapon_skills = 0.0
         # How good the player can use magic skills (e.g. Cure)
-        self.magic_skills = 0
+        self.magic_skills = 0.0
         # Required amount of mana to use cure
         self.mana_for_cure = 0
         # Factor to calculate the amount of life points got through cure
