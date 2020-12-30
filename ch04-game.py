@@ -20,13 +20,16 @@ class Human:
         self.name = "Undefined"
         self.left_hand = ""
         self.right_hand = ""
+        self.weapon_skills = 0
 
     def attack(self):
-        damage = random.randint(1, self.right_hand.attack)
+        total_attack = round((self.right_hand.attack + self.left_hand.attack) * self.weapon_skills)
+        damage = random.randint(1, total_attack)
         return damage
 
     def defense(self):
-        block = random.randint(1, self.left_hand.defense)
+        total_defense = round((self.right_hand.defense + self.left_hand.defense) * self.weapon_skills)
+        block = random.randint(1, total_defense)
         return block
 
     def damage(self, Attacker):
@@ -74,12 +77,14 @@ Knight.name = "Johnny Lawrence"
 Knight.life_points = 101
 Knight.right_hand = swd_justice
 Knight.left_hand = shd_guardian
+Knight.weapon_skills = 1.1
 
 Hunter = Human()
 Hunter.name = "Daniel Larusso"
 Hunter.life_points = 50
 Hunter.right_hand = fst_bare
 Hunter.left_hand = shd_demon
+Hunter.weapon_skills = 24.2
 
 
 while Hunter.alive() and Knight.alive():
