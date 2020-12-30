@@ -1,7 +1,7 @@
 import random
 ### Global Variables ###
 # Names the weapon types available in the game
-weapon_type = ['Fist', 'Axe', 'Sword', 'Shield', 'Wand']
+weapon_type = ['Fist', 'Paw', 'Axe', 'Sword', 'Shield', 'Wand']
 
 ### Classes ###
 class Weapon:
@@ -16,7 +16,7 @@ class Weapon:
         self.type = weapon_type[0]
 
 
-class Human:
+class Creature:
 
     def __init__(self):
         self.data = []
@@ -35,6 +35,9 @@ class Human:
         self.mana_for_cure = 0
         # Factor to calculate the amount of life points got through cure
         self.life_per_cure = 0.0
+        self.can_attack = False
+        self.can_defend = False
+
 
     # Calculates a random damage value a player can delivered based on weapons and skills
     def attack(self):
@@ -52,9 +55,15 @@ class Human:
 
     # Delivers damage to a victim
     def engage(self, Victim):
-        if self.alive():
+        # Is the attacker alive?
+        if self.alive() and self.can_attack:
+            # Is the victim alive?
             if Victim.alive():
-                result = self.attack() - Victim.defense()
+                result = self.attack()
+                # Result can be minimized if the victim is able to defend him/herself
+                if Victim.can_defend:
+                    result -= Victim.defense()
+                # Any harm?
                 if (result > 0):
                     Victim.life_points_current -= result
                     print(f'{Victim.name} suffered an attack from {self.name} with damage'
@@ -97,24 +106,30 @@ fst_bare.protection = 1
 
 swd_justice = Weapon()
 swd_justice.name = "Great Sword of Justice"
-swd_justice.type = weapon_type[2]
+swd_justice.type = weapon_type[3]
 swd_justice.damage = 18
 swd_justice.protection = 2
 
 shd_guardian = Weapon()
 shd_guardian.name = "Guardian Shield"
-shd_guardian.type = weapon_type[2]
+shd_guardian.type = weapon_type[4]
 shd_guardian.damage = 1
 shd_guardian.protection = 15
 
 shd_demon = Weapon()
 shd_demon.name = "Demon Shield"
-shd_demon.type = weapon_type[2]
+shd_demon.type = weapon_type[4]
 shd_demon.damage = 1
 shd_demon.protection = 20
 
+paw_rabbit = Weapon()
+paw_rabbit.name = "Sweet White Rabbit Paw"
+paw_rabbit.type = weapon_type[2]
+paw_rabbit.damage = 0
+paw_rabbit.protection = 0
+
 # Creating Players
-Knight = Human()
+Knight = Creature()
 Knight.name = "Johnny Lawrence"
 Knight.life_points_max = 100
 Knight.life_points_current = Knight.life_points_max
@@ -124,8 +139,10 @@ Knight.left_hand = shd_guardian
 Knight.weapon_skills = 1.1
 Knight.mana_for_cure = 10
 Knight.life_per_cure = 0.3
+Knight.can_attack = True
+Knight.can_defend = True
 
-Hunter = Human()
+Hunter = Creature()
 Hunter.name = "Daniel Larusso"
 Hunter.life_points_max = 100
 Hunter.life_points_current = Hunter.life_points_max
@@ -134,6 +151,17 @@ Hunter.left_hand = shd_demon
 Hunter.weapon_skills = 24.2
 Hunter.mana_for_cure = 10
 Hunter.life_per_cure = 0.2
+Hunter.can_attack = True
+Hunter.can_defend = True
+
+Rabbit = Creature()
+Rabbit.name = "Innocent White Rabbit"
+Rabbit.life_points_max = 10
+Rabbit.life_points_current = Rabbit.life_points_max
+Rabbit.right_hand = paw_rabbit
+Rabbit.left_hand = paw_rabbit
+Rabbit.can_attack = False
+Rabbit.can_defend = False
 
 # Fight!
 while Hunter.alive() and Knight.alive():
@@ -146,3 +174,9 @@ while Hunter.alive() and Knight.alive():
     Hunter.engage(Knight)
     if Knight.life_points_current <= round(Knight.life_points_max * 0.5):
         Knight.cure()
+
+print("### Next fight of the night! ###")
+# Fight II!
+while Hunter.alive() and Rabbit.alive():
+    Hunter.engage(Rabbit)
+
